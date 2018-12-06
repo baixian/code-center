@@ -1,0 +1,23 @@
+/* pages/tab/tab.wxss */
+.tabs-item.selected {
+  color:#2aa1fb;
+  border-bottom:2px solid #2aa1fb;
+}
+
+.tabs-box{
+  width: 100%;
+  display: flex;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #fff;
+}
+.tabs-item {
+  width:33.3%;
+  color:#333;
+  font-size:32rpx;
+  flex: 1;
+  align-items:center;
+  justify-content:center;
+  border-bottom:1rpx solid #D0D0D7;
+}

@@ -1,0 +1,20 @@
+<!--pages/tab/tab.wxml-->
+<view class='container'>
+<view class='tabs-box'>
+  <block wx:for="{{tabs}}" wx:key="id">
+   
+    <view class="tabs-item  {{currentTabsIndex == index?'selected':''}}" bindtap='onTabChange' data-index='{{index}}'>{{item}}</view>
+     
+   </block>  
+</view>
+
+<view class='introduce' hidden='{{currentTabsIndex != 0}}'> 
+1111
+ </view>
+<view class='introduce' hidden='{{currentTabsIndex != 1}}'> 222</view>
+<view class='introduce' hidden='{{currentTabsIndex != 2}}'>3333 </view>
+
+
+
+
+</view>
