@@ -1,0 +1,15 @@
+<!--pages/index/index.wxml-->
+<view class='container'>
+  <view class='list'>
+    <view class='item' bindtap='tab'>
+        tab
+    </view>
+     <view class='item' bindtap='Toast'>
+        canvas
+    </view>
+     <view class='item' bindtap='Toast'>
+       animate
+    </view>
+    
+  </view>
+</view>
