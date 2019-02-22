@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>swiper</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .m-block-4 {
+            width: 100%;
+            overflow: scroll;
+            height: 70px;
+            background-color: #0DE1BD;
+        }
+        .m-block-4::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+
+        .sNav::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+        .solution {
+            height: 70px;
+            overflow: hidden;
+            width: 100%;
+        }
+        .sNav {
+            width: 100%;
+            overflow: hidden;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sNav ul {
+            white-space: nowrap;
+            font-size: 0;
+            position: relative;
+            margin-bottom: 0;
+            padding-left: 0;
+        }
+        .s-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1300;
+            background-color: #0DE1BD;
+        }
+        .sNav li {
+            display: inline-block;
+            vertical-align: top;
+            -webkit-transition: all ease 0.3s;
+            transition: all ease 0.3s;
+        }
+        .sNav li a {
+            text-align: center;
+            display: block;
+            width: 100px;
+            height: 70px;
+            line-height: 70px;
+            font-size: 16px;
+            color: #fff;
+            -webkit-transition: all ease .3s;
+            transition: all ease .3s;
+        }
+        .sNav li.active {
+            background-color: #fff;
+            color: #0de1bd;
+        }
+        .tab-list {
+            overflow: hidden;
+        }
+        .sNav li.active a {
+            color: #0DE1BD;
+        }
+        .tab-list .swiper-slide {
+            overflow: hidden;
+            height: 600px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="m-block-4">
+    <div class="solution">
+        <div class="sNav">
+            <ul>
+                <li class="active">
+                    <a href="javascript:;">示例菜单1</a>
+                </li>
+                <li>
+                    <a href="javascript:;">示例菜单2</a>
+                </li>
+                <li>
+                    <a href="javascript:;">示例菜单3</a>
+                </li>
+                <li>
+                    <a href="javascript:;">示例菜单4</a>
+                </li>
+                <li>
+                    <a href="javascript:;">示例菜单5</a>
+                </li>
+                <li>
+                    <a href="javascript:;">示例菜单6</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="tab-list">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+           1 啊哈哈哈
+        </div>
+        <div class="swiper-slide">
+          2  啊哈哈哈
+        </div>
+        <div class="swiper-slide">
+           3 啊哈哈哈
+        </div>
+        <div class="swiper-slide">
+            4啊哈哈哈
+        </div>
+        <div class="swiper-slide">
+           5 啊哈哈哈
+        </div>
+        <div class="swiper-slide">
+           6 啊哈哈哈
+        </div>
+    </div>
+</div>
+<script>
+
+    $(function () {
+        var maytab = new Swiper('.swiper-container.s-list');
+        var tabsSwiper = new Swiper('.tab-list', {
+            speed: 500,
+            autoHeight: true,
+            on: {
+                slideChangeTransitionStart: function () {
+                    $(".sNav .active").removeClass('active');
+                    $(".sNav li").eq(this.activeIndex).addClass('active');
+                    sNavv();
+                }
+            }
+        })
+        var slistHeight = $('.tab-list .swiper-slide-active').height();
+        $(".sNav li").on('click', function (e) {
+            e.preventDefault()
+            $(this).addClass("active").siblings().removeClass("active");
+            $(window).scrollTop($('.solution').offset().top)
+            var index = $(this).index();
+            slistHeight = $('.tab-list .swiper-slide-active').height();
+            sNavv();
+            tabsSwiper.slideTo($(this).index())
+        })
+
+        function sNavv() {
+            var capLi = $(".sNav li.active").position().left - 120;
+            $(".sNav").animate({scrollLeft: capLi}, 500);
+        }
+
+        $(window).scroll(function () {
+            var Wtop = $(window).scrollTop()
+            if (Wtop > $('.m-bg').offset().top  && Wtop < ($('.m-bg').offset().top + $('.m-bg').height() + slistHeight - 200)) {
+                $('.solution .sNav').addClass('s-fixed')
+            } else {
+                $('.solution .sNav').removeClass('s-fixed')
+            }
+        })
+    })
+
+
+</script>
+</body>
+</html>
